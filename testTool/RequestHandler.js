@@ -19,7 +19,7 @@ class RequestHandler {
     sendequest(host, method, path, body) {
         var options = {
             method: method,
-            uri: `${this.protocol}://${host.name}:${host.port}${path}`,
+            uri: `${this.protocol}://${host.name}${path}`,
             body,
             json: true,
             resolveWithFullResponse: true

@@ -1,5 +1,5 @@
 const configuration = require('../src/serviceConfig');
-const PROTOCOL = 'http';
+const PROTOCOL = 'https';
 
 const RequestHandler = require('./RequestHandler');
 const { CarerApi, PatientApi} = require('./RestApis');
