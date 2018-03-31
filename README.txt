@@ -21,11 +21,8 @@ node testScript.js carer create "{\"firstName\":\"Magda\", \"lastName\":\"Andrus
 # add patient to carer
 node testScript.js relate {patientId} {carerId}
 
-# testScript body
-# node testScript.js carer create "{\"firstName\":\"Magda\", \"lastName\":\"Kowalska\"}"
-# node testScript.js carer create "{\"firstName\":\"Ania\", \"lastName\":\"Wojciechowska\"}"
-# node testScript.js carer create "{\"firstName\":\"Ola\", \"lastName\":\"Deba\"}"
+# testScript body examples for carer
+node testScript.js carer create "{\"firstName\":\"Magda\", \"lastName\":\"Kowalska\"}"
 
-# node testScript.js patient create "{\"firstName\":\"Tomasz\", \"lastName\":\"Zieba\",\"country\":\"Poland\", \"birthDate\":\"1960-01-01\"}"
-# node testScript.js patient create "{\"firstName\":\"Kamil\", \"lastName\":\"Nowak\",\"country\":\"Poland\", \"birthDate\":\"1970-01-01\"}"
-# node testScript.js patient create "{\"firstName\":\"Stefan\", \"lastName\":\"Romczyk\",\"country\":\"Poland\", \"birthDate\":\"1970-01-01\"}"
+# testScript body examples for patient
+node testScript.js patient create "{\"firstName\":\"Tomasz\", \"lastName\":\"Zieba\",\"country\":\"Poland\", \"birthDate\":\"1960-01-01\"}"
