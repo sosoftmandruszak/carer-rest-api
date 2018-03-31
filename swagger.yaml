@@ -1,0 +1,189 @@
+# App config service
+# An admin can store a key and a value for a specific app (client) and version
+# A client can get all changed config fields since the last received change for a specific client and version
+swagger: '2.0'
+host: 'config-restful-api.herokuapp.com'
+schemes: [ "https" ]
+info:
+  title: Carer API
+  description: TODO
+  version: "1.0.0"
+paths:
+  /patient/{id}:
+    get:
+      description: Get patient with given id
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: Identifier for the patient
+      responses:
+          200:
+            description: An object of patient with id
+            schema:
+              $ref: "#/definitions/PatientWithId"
+
+    delete:
+      description: Get patient with given id
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: Identifier for the patient
+      responses:
+          200:
+            description: An object of patient deleted
+          401:
+            description: An object not found
+
+  /patient/{id}/carers:
+    get:
+      description: Get carers of patient with given id
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: Identifier for the patient
+      responses:
+          200:
+            description: A list of carers related to patient with id
+            schema:
+              type: array
+              items:
+                $ref: '#/definitions/CarerWithId'
+  /patient/{id}/add/carer/{carerId}:
+    post:
+      description: Sets relation between patient and carer
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: Id of patient
+        - name: carerId
+          in: path
+          type: integer
+          required: true
+          description: Id of carer
+      responses:
+          200:
+            description: Relation already exists
+          201:
+            description: Relation created
+  /patient:
+    post:
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Patient"
+      responses:
+        201:
+          description: Created
+
+
+
+  /carer/{id}:
+    get:
+      description: Get patient with given id
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: Identifier for the patient
+      responses:
+          200:
+            description: An object of patient with id
+            schema:
+              $ref: "#/definitions/CarerWithId"
+    delete:
+      description: Get patient with given id
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: Identifier for the patient
+      responses:
+          200:
+            description: An object of patient deleted
+          401:
+            description: An object not found
+  /carer/{id}/patients:
+    get:
+      description: Get carers of patient with given id
+      parameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+          description: Identifier for the patient
+      responses:
+          200:
+            description: A list of carers related to patient with id
+            schema:
+              type: array
+              items: {
+                $ref: '#/definitions/PatientWithId'
+              }
+  /carer:
+    post:
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Carer"
+      responses:
+        201:
+          description: Created
+
+definitions:
+  Patient:
+    required:
+      - firstName
+      - lastName
+      - country
+      - birthDate
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      country:
+        type: string
+      birthDate:
+        type: string
+  PatientWithId:
+    allOf:     # Combines the BasicErrorModel and the inline model
+      - $ref: "#/definitions/Patient"
+      - type: object
+        required:
+          - rootCause
+        properties:
+          id:
+            type: integer
+  Carer:
+    required:
+      - firstName
+      - lastName
+    properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+  CarerWithId:
+    allOf:
+      - $ref: "#/definitions/Carer"
+      - type: object
+        required:
+          - rootCause
+        properties:
+          id:
+            type: integer
+
