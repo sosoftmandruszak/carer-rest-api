@@ -1,3 +1,8 @@
+=================================================================
+To see endpoints definition put file swagger.yaml to online app:
+
+https://editor.swagger.io
+=================================================================
 To run testScript use script testTool/testScript.js commands
 
 # get patient with id
